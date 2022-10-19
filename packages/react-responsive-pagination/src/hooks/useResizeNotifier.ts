@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export function useResizeNotifier(
@@ -6,11 +6,11 @@ export function useResizeNotifier(
   callback: () => void,
 ) {
   const callBackRef = useRef(callback);
-  useLayoutEffect(() => {
+  useEffect(() => {
     callBackRef.current = callback;
   }, [callback]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!element) return;
 
     const resizeObserver = new ResizeObserver(

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { getWidth } from '../helpers/style';
 
@@ -6,13 +6,13 @@ export function useFoutDetector(
   getElements: () => HTMLElement[] | null,
   handleFout: () => void,
 ) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const elements = getElements();
 
     if (!elements) return;
 
     return setupWidthChangeAfterRenderListener(elements, handleFout);
-  });
+  }, []);
 }
 
 function setupWidthChangeAfterRenderListener(
